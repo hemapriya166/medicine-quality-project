@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>MedQuality - Dashboard</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css">
+</head>
+<body class="light-page">
+
+  <!-- Hamburger button -->
+  <button class="hamburger" onclick="toggleSidebar()" aria-label="Toggle menu">
+    <span></span>
+    <span></span>
+    <span></span>
+  </button>
+
+  <!-- Overlay -->
+  <div class="sidebar-overlay" id="overlay" onclick="toggleSidebar()"></div>
+
+  <div class="app-container">
+
+    <!-- Sidebar -->
+    <aside class="sidebar" id="sidebar">
+      <a href="dashboard.html" class="sidebar-logo">
+        <svg width="28" height="28" viewBox="0 0 80 80">
+          <circle cx="40" cy="40" r="36" fill="rgba(255,255,255,0.15)" stroke="rgba(255,255,255,0.8)" stroke-width="2"/>
+          <path d="M18 40 L26 40 L30 28 L36 52 L40 36 L44 40 L62 40"
+            fill="none" stroke="#ffffff" stroke-width="3"
+            stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+        <span>MedQuality</span>
+      </a>
+
+      <nav class="sidebar-nav">
+        <a href="dashboard.html" class="active">
+          <span class="nav-icon">📊</span> Dashboard
+        </a>
+        <a href="medicines.html">
+          <span class="nav-icon">💊</span> Medicines
+        </a>
+        <a href="consumables.html">
+          <span class="nav-icon">🧪</span> Consumables
+        </a>
+        <a href="test-results.html">
+          <span class="nav-icon">📋</span> Test Results
+        </a>
+        <a href="alerts.html">
+          <span class="nav-icon">🔔</span> Alerts
+        </a>
+        <a href="report.html">
+          <span class="nav-icon">📄</span> Report
+        </a>
+      </nav>
+
+      <div class="sidebar-bottom">
+        <div class="sidebar-user">
+          <p>Logged in as</p>
+          <span id="welcomeUser"></span>
+        </div>
+        <button onclick="logout()">🚪 Logout</button>
+      </div>
+    </aside>
+
+    <!-- Main content -->
+    <div class="main-content">
+      <div class="page-container">
+
+        <p class="page-title">Dashboard</p>
+
+        <!-- Stats cards -->
+        <div class="stats-grid">
+          <div class="stat-card" data-aos="fade-up" data-aos-delay="0">
+            <p class="stat-label">Total items</p>
+            <p class="stat-value" id="totalMedicines">0</p>
+          </div>
+          <div class="stat-card" data-aos="fade-up" data-aos-delay="100">
+            <p class="stat-label">Tests passed</p>
+            <p class="stat-value" id="totalPassed" style="color:#166534;">0</p>
+          </div>
+          <div class="stat-card" data-aos="fade-up" data-aos-delay="200">
+            <p class="stat-label">Tests failed</p>
+            <p class="stat-value" id="totalFailed" style="color:#991b1b;">0</p>
+          </div>
+          <div class="stat-card" data-aos="fade-up" data-aos-delay="300">
+            <p class="stat-label">Active alerts</p>
+            <p class="stat-value" id="totalAlerts" style="color:#854d0e;">0</p>
+          </div>
+        </div>
+
+        <!-- Charts -->
+        <div style="display:grid; grid-template-columns:1fr 1fr; gap:20px; margin-bottom:24px;">
+          <div class="card" data-aos="fade-up" data-aos-delay="100">
+            <p style="font-size:14px; font-weight:600; color:#0c447c; margin-bottom:16px;">Pass vs Fail</p>
+            <canvas id="doughnutChart" height="200"></canvas>
+          </div>
+          <div class="card" data-aos="fade-up" data-aos-delay="200">
+            <p style="font-size:14px; font-weight:600; color:#0c447c; margin-bottom:16px;">Monthly test results</p>
+            <canvas id="barChart" height="200"></canvas>
+          </div>
+        </div>
+
+        <!-- Recent test results -->
+        <div class="card" data-aos="fade-up" data-aos-delay="100" style="margin-bottom:24px;">
+          <p style="font-size:14px; font-weight:600; color:#0c447c; margin-bottom:16px;">Recent test results</p>
+          <table>
+            <thead>
+              <tr>
+                <th>Name</th>
+                <th>Batch/Category</th>
+                <th>Details</th>
+                <th>Date</th>
+                <th>Status</th>
+              </tr>
+            </thead>
+            <tbody id="recentTestsTable">
+              <tr>
+                <td colspan="5" style="text-align:center; color:#94a3b8;">Loading...</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <!-- Active alerts -->
+        <div class="card" data-aos="fade-up" data-aos-delay="200">
+          <p style="font-size:14px; font-weight:600; color:#0c447c; margin-bottom:16px;">Active alerts</p>
+          <div id="alertsList">
+            <p style="color:#94a3b8; font-size:13px;">Loading...</p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+  </div>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.0/chart.umd.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+  <script src="dashboard.js"></script>
+  <script>
+    function toggleSidebar() {
+      document.getElementById('sidebar').classList.toggle('open');
+      document.getElementById('overlay').classList.toggle('open');
+    }
+  </script>
+</body>
+</html>next

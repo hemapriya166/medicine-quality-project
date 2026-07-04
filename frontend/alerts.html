@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>MedQuality - Alerts</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css">
+</head>
+<body class="light-page">
+
+  <!-- Hamburger button -->
+  <button class="hamburger" onclick="toggleSidebar()" aria-label="Toggle menu">
+    <span></span>
+    <span></span>
+    <span></span>
+  </button>
+
+  <!-- Overlay -->
+  <div class="sidebar-overlay" id="overlay" onclick="toggleSidebar()"></div>
+
+  <div class="app-container">
+
+    <!-- Sidebar -->
+    <aside class="sidebar" id="sidebar">
+      <a href="dashboard.html" class="sidebar-logo">
+        <svg width="28" height="28" viewBox="0 0 80 80">
+          <circle cx="40" cy="40" r="36" fill="rgba(255,255,255,0.15)" stroke="rgba(255,255,255,0.8)" stroke-width="2"/>
+          <path d="M18 40 L26 40 L30 28 L36 52 L40 36 L44 40 L62 40"
+            fill="none" stroke="#ffffff" stroke-width="3"
+            stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+        <span>MedQuality</span>
+      </a>
+
+      <nav class="sidebar-nav">
+        <a href="dashboard.html">
+          <span class="nav-icon">📊</span> Dashboard
+        </a>
+        <a href="medicines.html">
+          <span class="nav-icon">💊</span> Medicines
+        </a>
+        <a href="consumables.html">
+          <span class="nav-icon">🧪</span> Consumables
+        </a>
+        <a href="test-results.html">
+          <span class="nav-icon">📋</span> Test Results
+        </a>
+        <a href="alerts.html" class="active">
+          <span class="nav-icon">🔔</span> Alerts
+        </a>
+        <a href="report.html">
+          <span class="nav-icon">📄</span> Report
+        </a>
+      </nav>
+
+      <div class="sidebar-bottom">
+        <div class="sidebar-user">
+          <p>Logged in as</p>
+          <span id="welcomeUser"></span>
+        </div>
+        <button onclick="logout()">🚪 Logout</button>
+      </div>
+    </aside>
+
+    <!-- Main content -->
+    <div class="main-content">
+      <div class="page-container">
+
+        <p class="page-title">Alerts</p>
+
+        <!-- Stats -->
+        <div class="stats-grid" style="margin-bottom:24px;">
+          <div class="stat-card" data-aos="fade-up" data-aos-delay="0">
+            <p class="stat-label">Total alerts</p>
+            <p class="stat-value" id="totalAlerts">0</p>
+          </div>
+          <div class="stat-card" data-aos="fade-up" data-aos-delay="100">
+            <p class="stat-label">Critical</p>
+            <p class="stat-value" id="criticalCount" style="color:#991b1b;">0</p>
+          </div>
+          <div class="stat-card" data-aos="fade-up" data-aos-delay="200">
+            <p class="stat-label">Warning</p>
+            <p class="stat-value" id="warningCount" style="color:#854d0e;">0</p>
+          </div>
+          <div class="stat-card" data-aos="fade-up" data-aos-delay="300">
+            <p class="stat-label">Resolved</p>
+            <p class="stat-value" id="resolvedCount" style="color:#166534;">0</p>
+          </div>
+        </div>
+
+        <!-- Filter buttons -->
+        <div style="display:flex; gap:10px; margin-bottom:20px;">
+          <button onclick="filterAlerts('all')" id="btnAll"
+            style="padding:8px 20px; border-radius:8px; border:2px solid #0c447c;
+            background:#0c447c; color:white; font-weight:600; cursor:pointer; font-size:13px;">
+            All
+          </button>
+          <button onclick="filterAlerts('Critical')" id="btnCritical"
+            style="padding:8px 20px; border-radius:8px; border:2px solid #991b1b;
+            background:white; color:#991b1b; font-weight:600; cursor:pointer; font-size:13px;">
+            Critical
+          </button>
+          <button onclick="filterAlerts('Warning')" id="btnWarning"
+            style="padding:8px 20px; border-radius:8px; border:2px solid #854d0e;
+            background:white; color:#854d0e; font-weight:600; cursor:pointer; font-size:13px;">
+            Warning
+          </button>
+          <button onclick="filterAlerts('Resolved')" id="btnResolved"
+            style="padding:8px 20px; border-radius:8px; border:2px solid #166534;
+            background:white; color:#166534; font-weight:600; cursor:pointer; font-size:13px;">
+            Resolved
+          </button>
+        </div>
+
+        <!-- Alerts list -->
+        <div id="alertsList" data-aos="fade-up">
+          <p style="color:#94a3b8; font-size:13px;">Loading...</p>
+        </div>
+
+      </div>
+    </div>
+
+  </div>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+  <script src="alerts.js"></script>
+  <script>
+    function toggleSidebar() {
+      document.getElementById('sidebar').classList.toggle('open');
+      document.getElementById('overlay').classList.toggle('open');
+    }
+  </script>
+</body>
+</html>

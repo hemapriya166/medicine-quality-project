@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MedQuality - Check Medicine Quality</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css">
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      background: #f8fafc;
+      font-family: 'Segoe UI', Arial, sans-serif;
+    }
+
+    .check-navbar {
+      background: #0c447c;
+      padding: 14px 40px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+    }
+
+    .check-navbar .logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      text-decoration: none;
+    }
+
+    .check-navbar .logo span {
+      font-size: 18px;
+      font-weight: 700;
+      color: #ffffff;
+    }
+
+    .check-navbar .nav-right {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+
+    .check-navbar .nav-right a {
+      font-size: 13px;
+      color: rgba(255,255,255,0.8);
+      text-decoration: none;
+    }
+
+    .check-navbar .btn-login {
+      background: #22c55e;
+      color: #ffffff;
+      padding: 8px 20px;
+      border-radius: 8px;
+      font-size: 13px;
+      font-weight: 600;
+      text-decoration: none;
+    }
+
+    .check-hero {
+      background: linear-gradient(135deg, #0c447c, #185fa5, #2478c8);
+      padding: 50px 40px;
+      text-align: center;
+    }
+
+    .check-hero p.badge {
+      font-size: 11px;
+      color: rgba(255,255,255,0.7);
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      margin: 0 0 12px;
+    }
+
+    .check-hero h1 {
+      font-size: 28px;
+      font-weight: 700;
+      color: #ffffff;
+      margin: 0 0 10px;
+    }
+
+    .check-hero p.subtitle {
+      font-size: 13px;
+      color: rgba(255,255,255,0.75);
+      margin: 0 0 24px;
+      line-height: 1.7;
+    }
+
+    .search-box {
+      display: flex;
+      gap: 10px;
+      max-width: 520px;
+      margin: 0 auto;
+    }
+
+    .search-box input {
+      flex: 1;
+      padding: 13px 18px;
+      border-radius: 10px;
+      border: none;
+      font-size: 14px;
+      outline: none;
+      font-family: inherit;
+    }
+
+    .search-box button {
+      background: #22c55e;
+      color: #ffffff;
+      padding: 13px 24px;
+      border-radius: 10px;
+      border: none;
+      font-size: 14px;
+      font-weight: 600;
+      cursor: pointer;
+      white-space: nowrap;
+      transition: opacity 0.2s;
+    }
+
+    .search-box button:hover {
+      opacity: 0.9;
+    }
+
+    .results-container {
+      max-width: 700px;
+      margin: 32px auto;
+      padding: 0 20px;
+    }
+
+    .result-card {
+      background: #ffffff;
+      border-radius: 14px;
+      padding: 20px;
+      margin-bottom: 14px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+      border: 1px solid #e2e8f0;
+    }
+
+    .result-card.pass {
+      border-left: 4px solid #16a34a;
+      border-color: #dcfce7;
+    }
+
+    .result-card.fail {
+      border-left: 4px solid #dc2626;
+      border-color: #fecaca;
+    }
+
+    .result-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      margin-bottom: 12px;
+    }
+
+    .result-name {
+      font-size: 16px;
+      font-weight: 600;
+      color: #0c447c;
+      margin: 0 0 4px;
+    }
+
+    .result-batch {
+      font-size: 12px;
+      color: #64748b;
+      margin: 0;
+    }
+
+    .result-stats {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 10px;
+      border-radius: 10px;
+      padding: 12px;
+      margin-top: 10px;
+    }
+
+    .result-stats.pass-bg {
+      background: #f0fdf4;
+    }
+
+    .result-stats.fail-bg {
+      background: #fff5f5;
+    }
+
+    .stat-item {
+      text-align: center;
+    }
+
+    .stat-item p.label {
+      font-size: 11px;
+      color: #94a3b8;
+      margin: 0 0 4px;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    .stat-item p.value {
+      font-size: 16px;
+      font-weight: 600;
+      margin: 0;
+    }
+
+    .empty-state {
+      text-align: center;
+      padding: 40px 20px;
+    }
+
+    .empty-state p.icon {
+      font-size: 48px;
+      margin: 0 0 12px;
+    }
+
+    .empty-state p.title {
+      font-size: 16px;
+      font-weight: 600;
+      color: #0c447c;
+      margin: 0 0 8px;
+    }
+
+    .empty-state p.desc {
+      font-size: 13px;
+      color: #94a3b8;
+      margin: 0;
+    }
+
+    .loading-state {
+      text-align: center;
+      padding: 40px;
+      color: #94a3b8;
+      font-size: 13px;
+    }
+
+    @media (max-width: 768px) {
+      .check-navbar {
+        padding: 12px 20px;
+      }
+
+      .check-hero {
+        padding: 36px 20px;
+      }
+
+      .check-hero h1 {
+        font-size: 22px;
+      }
+
+      .search-box {
+        flex-direction: column;
+      }
+
+      .result-stats {
+        grid-template-columns: repeat(3, 1fr);
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Navbar -->
+  <nav class="check-navbar">
+    <a href="home.html" class="logo">
+      <svg width="28" height="28" viewBox="0 0 80 80">
+        <circle cx="40" cy="40" r="36" fill="rgba(255,255,255,0.15)" stroke="rgba(255,255,255,0.8)" stroke-width="2"/>
+        <path d="M18 40 L26 40 L30 28 L36 52 L40 36 L44 40 L62 40"
+          fill="none" stroke="#ffffff" stroke-width="3"
+          stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+      <span>MedQuality</span>
+    </a>
+    <div class="nav-right">
+      <a href="home.html">← Back to home</a>
+      <a href="index.html" class="btn-login">Login</a>
+    </div>
+  </nav>
+
+  <!-- Hero with search -->
+  <div class="check-hero">
+    <p class="badge">Public medicine checker — no login required</p>
+    <h1>Check Medicine Quality</h1>
+    <p class="subtitle">Search any medicine by name or batch number to instantly verify its quality test status</p>
+    <div class="search-box">
+      <input type="text" id="searchInput" placeholder="Enter medicine name or batch number..."
+        onkeypress="if(event.key==='Enter') searchMedicine()"/>
+      <button onclick="searchMedicine()">🔍 Search</button>
+    </div>
+  </div>
+
+  <!-- Results -->
+  <div class="results-container">
+    <div id="resultsArea">
+      <div class="empty-state" data-aos="fade-up">
+        <p class="icon">🔍</p>
+        <p class="title">Search for a medicine</p>
+        <p class="desc">Enter a medicine name or batch number above to check its quality test results</p>
+      </div>
+    </div>
+  </div>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+  <script src="check.js"></script>
+  <script>
+    AOS.init({ duration: 600, once: true });
+  </script>
+</body>
+</html>

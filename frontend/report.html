@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>MedQuality - Report</title>
+  <link rel="stylesheet" href="style.css">
+  <style>
+    @media print {
+      .sidebar, .hamburger, .sidebar-overlay, .no-print { display: none !important; }
+      .main-content { margin-left: 0 !important; }
+      body { background: white; }
+      .page-container { padding: 20px; }
+    }
+  </style>
+</head>
+<body class="light-page">
+
+  <!-- Hamburger button -->
+  <button class="hamburger no-print" onclick="toggleSidebar()" aria-label="Toggle menu">
+    <span></span>
+    <span></span>
+    <span></span>
+  </button>
+
+  <!-- Overlay -->
+  <div class="sidebar-overlay" id="overlay" onclick="toggleSidebar()"></div>
+
+  <div class="app-container">
+
+    <!-- Sidebar -->
+    <aside class="sidebar" id="sidebar">
+      <a href="dashboard.html" class="sidebar-logo">
+        <svg width="28" height="28" viewBox="0 0 80 80">
+          <circle cx="40" cy="40" r="36" fill="rgba(255,255,255,0.15)" stroke="rgba(255,255,255,0.8)" stroke-width="2"/>
+          <path d="M18 40 L26 40 L30 28 L36 52 L40 36 L44 40 L62 40"
+            fill="none" stroke="#ffffff" stroke-width="3"
+            stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+        <span>MedQuality</span>
+      </a>
+
+      <nav class="sidebar-nav">
+        <a href="dashboard.html">
+          <span class="nav-icon">📊</span> Dashboard
+        </a>
+        <a href="medicines.html">
+          <span class="nav-icon">💊</span> Medicines
+        </a>
+        <a href="consumables.html">
+          <span class="nav-icon">🧪</span> Consumables
+        </a>
+        <a href="test-results.html">
+          <span class="nav-icon">📋</span> Test Results
+        </a>
+        <a href="alerts.html">
+          <span class="nav-icon">🔔</span> Alerts
+        </a>
+        <a href="report.html" class="active">
+          <span class="nav-icon">📄</span> Report
+        </a>
+      </nav>
+
+      <div class="sidebar-bottom">
+        <div class="sidebar-user">
+          <p>Logged in as</p>
+          <span id="welcomeUser"></span>
+        </div>
+        <button onclick="logout()">🚪 Logout</button>
+      </div>
+    </aside>
+
+    <!-- Main content -->
+    <div class="main-content">
+      <div class="page-container">
+
+        <!-- Report header -->
+        <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:24px;">
+          <div>
+            <p class="page-title" style="margin-bottom:4px;">Quality Report</p>
+            <p style="font-size:13px; color:#64748b;" id="reportDate"></p>
+          </div>
+          <button onclick="window.print()" class="btn-primary no-print"
+            style="width:auto; padding:10px 24px; margin-top:0;">
+            🖨️ Print Report
+          </button>
+        </div>
+
+        <!-- Summary stats -->
+        <div class="stats-grid" style="margin-bottom:24px;">
+          <div class="stat-card">
+            <p class="stat-label">Total medicines</p>
+            <p class="stat-value" id="totalMedicines">0</p>
+          </div>
+          <div class="stat-card">
+            <p class="stat-label">Total consumables</p>
+            <p class="stat-value" id="totalConsumables">0</p>
+          </div>
+          <div class="stat-card">
+            <p class="stat-label">Tests passed</p>
+            <p class="stat-value" id="totalPassed" style="color:#166534;">0</p>
+          </div>
+          <div class="stat-card">
+            <p class="stat-label">Tests failed</p>
+            <p class="stat-value" id="totalFailed" style="color:#991b1b;">0</p>
+          </div>
+        </div>
+
+        <!-- Medicines table -->
+        <div class="card" style="margin-bottom:24px;">
+          <p style="font-size:15px; font-weight:600; color:#0c447c; margin-bottom:16px;">Medicines catalog</p>
+          <table>
+            <thead>
+              <tr>
+                <th>Name</th>
+                <th>Batch number</th>
+                <th>Manufacturer</th>
+                <th>Expiry date</th>
+              </tr>
+            </thead>
+            <tbody id="medicinesTable">
+              <tr><td colspan="4" style="text-align:center; color:#94a3b8;">Loading...</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <!-- Consumables table -->
+        <div class="card" style="margin-bottom:24px;">
+          <p style="font-size:15px; font-weight:600; color:#0c447c; margin-bottom:16px;">Consumables catalog</p>
+          <table>
+            <thead>
+              <tr>
+                <th>Name</th>
+                <th>Category</th>
+                <th>Quantity</th>
+                <th>Supplier</th>
+                <th>Status</th>
+              </tr>
+            </thead>
+            <tbody id="consumablesTable">
+              <tr><td colspan="5" style="text-align:center; color:#94a3b8;">Loading...</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <!-- Test results table -->
+        <div class="card" style="margin-bottom:24px;">
+          <p style="font-size:15px; font-weight:600; color:#0c447c; margin-bottom:16px;">Test results</p>
+          <table>
+            <thead>
+              <tr>
+                <th>Type</th>
+                <th>Name</th>
+                <th>Details</th>
+                <th>Date</th>
+                <th>Status</th>
+              </tr>
+            </thead>
+            <tbody id="testResultsTable">
+              <tr><td colspan="5" style="text-align:center; color:#94a3b8;">Loading...</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <!-- Alerts table -->
+        <div class="card">
+          <p style="font-size:15px; font-weight:600; color:#0c447c; margin-bottom:16px;">Quality alerts</p>
+          <table>
+            <thead>
+              <tr>
+                <th>Item</th>
+                <th>Message</th>
+                <th>Severity</th>
+                <th>Date</th>
+                <th>Status</th>
+              </tr>
+            </thead>
+            <tbody id="alertsTable">
+              <tr><td colspan="5" style="text-align:center; color:#94a3b8;">Loading...</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <script src="report.js"></script>
+  <script>
+    function toggleSidebar() {
+      document.getElementById('sidebar').classList.toggle('open');
+      document.getElementById('overlay').classList.toggle('open');
+    }
+  </script>
+</body>
+</html>

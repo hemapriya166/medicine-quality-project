@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>MedQuality - Test Results</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css">
+</head>
+<body class="light-page">
+
+  <!-- Hamburger button -->
+  <button class="hamburger" onclick="toggleSidebar()" aria-label="Toggle menu">
+    <span></span>
+    <span></span>
+    <span></span>
+  </button>
+
+  <!-- Overlay -->
+  <div class="sidebar-overlay" id="overlay" onclick="toggleSidebar()"></div>
+
+  <div class="app-container">
+
+    <!-- Sidebar -->
+    <aside class="sidebar" id="sidebar">
+      <a href="dashboard.html" class="sidebar-logo">
+        <svg width="28" height="28" viewBox="0 0 80 80">
+          <circle cx="40" cy="40" r="36" fill="rgba(255,255,255,0.15)" stroke="rgba(255,255,255,0.8)" stroke-width="2"/>
+          <path d="M18 40 L26 40 L30 28 L36 52 L40 36 L44 40 L62 40"
+            fill="none" stroke="#ffffff" stroke-width="3"
+            stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+        <span>MedQuality</span>
+      </a>
+
+      <nav class="sidebar-nav">
+        <a href="dashboard.html">
+          <span class="nav-icon">📊</span> Dashboard
+        </a>
+        <a href="medicines.html">
+          <span class="nav-icon">💊</span> Medicines
+        </a>
+        <a href="consumables.html">
+          <span class="nav-icon">🧪</span> Consumables
+        </a>
+        <a href="test-results.html" class="active">
+          <span class="nav-icon">📋</span> Test Results
+        </a>
+        <a href="alerts.html">
+          <span class="nav-icon">🔔</span> Alerts
+        </a>
+        <a href="report.html">
+          <span class="nav-icon">📄</span> Report
+        </a>
+      </nav>
+
+      <div class="sidebar-bottom">
+        <div class="sidebar-user">
+          <p>Logged in as</p>
+          <span id="welcomeUser"></span>
+        </div>
+        <button onclick="logout()">🚪 Logout</button>
+      </div>
+    </aside>
+
+    <!-- Main content -->
+    <div class="main-content">
+      <div class="page-container">
+
+        <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:24px;">
+          <p class="page-title" style="margin-bottom:0;">Test Results</p>
+          <button onclick="showAddForm()" class="btn-primary" style="width:auto; padding:10px 20px; margin-top:0;">
+            + Submit Test
+          </button>
+        </div>
+
+        <!-- Submit Test Form -->
+        <div id="addForm" class="card" style="display:none; margin-bottom:24px;" data-aos="fade-down">
+          <p style="font-size:15px; font-weight:600; color:#15803d; margin-bottom:16px;">Submit new test result</p>
+
+          <!-- Toggle buttons -->
+          <div style="display:flex; gap:10px; margin-bottom:20px;">
+            <button id="btnMedicine" onclick="switchType('Medicine')"
+              style="padding:8px 20px; border-radius:8px; border:2px solid #16a34a;
+              background:#16a34a; color:white; font-weight:600; cursor:pointer;">
+              💊 Medicine
+            </button>
+            <button id="btnConsumable" onclick="switchType('Consumable')"
+              style="padding:8px 20px; border-radius:8px; border:2px solid #16a34a;
+              background:white; color:#16a34a; font-weight:600; cursor:pointer;">
+              🧪 Consumable
+            </button>
+          </div>
+
+          <!-- Medicine fields -->
+          <div id="medicineFields">
+            <div style="display:grid; grid-template-columns:1fr 1fr; gap:16px;">
+              <div>
+                <label>Medicine name</label>
+                <input type="text" id="medicineName" placeholder="e.g. Paracetamol">
+              </div>
+              <div>
+                <label>Batch number</label>
+                <input type="text" id="batchNumber" placeholder="e.g. B001">
+              </div>
+              <div>
+                <label>Purity (%)</label>
+                <input type="number" id="purity" placeholder="e.g. 98" min="0" max="100">
+              </div>
+              <div>
+                <label>pH level</label>
+                <input type="number" id="pH" placeholder="e.g. 6.8" step="0.1" min="0" max="14">
+              </div>
+            </div>
+            <div style="background:#f0fdf4; border:1px solid #dcfce7; border-radius:8px; padding:12px 16px; margin-top:16px;">
+              <p style="font-size:12px; color:#166534; margin:0;">
+                ✅ <strong>Pass criteria:</strong> Purity ≥ 95% AND pH between 5.5 and 7.5
+              </p>
+            </div>
+          </div>
+
+          <!-- Consumable fields -->
+          <div id="consumableFields" style="display:none;">
+            <div style="display:grid; grid-template-columns:1fr 1fr; gap:16px;">
+              <div>
+                <label>Consumable name</label>
+                <input type="text" id="consumableName" placeholder="e.g. Surgical Gloves">
+              </div>
+              <div>
+                <label>Category</label>
+                <select id="conCategory">
+                  <option value="PPE">PPE</option>
+                  <option value="Lab Equipment">Lab Equipment</option>
+                  <option value="Reagents">Reagents</option>
+                  <option value="Surgical">Surgical</option>
+                  <option value="Other">Other</option>
+                </select>
+              </div>
+              <div>
+                <label>Condition</label>
+                <select id="condition">
+                  <option value="Good">Good</option>
+                  <option value="Damaged">Damaged</option>
+                  <option value="Expired">Expired</option>
+                </select>
+              </div>
+              <div>
+                <label>Expiry date</label>
+                <input type="date" id="conExpiry">
+              </div>
+            </div>
+            <div style="background:#f0fdf4; border:1px solid #dcfce7; border-radius:8px; padding:12px 16px; margin-top:16px;">
+              <p style="font-size:12px; color:#166534; margin:0;">
+                ✅ <strong>Pass criteria:</strong> Condition is Good AND expiry date is in the future
+              </p>
+            </div>
+          </div>
+
+          <!-- Photo upload -->
+          <div style="margin-top:16px;">
+            <label>Photo (optional)</label>
+            <input type="file" id="photoInput" accept="image/*"
+              style="width:100%; padding:10px 14px; border:1.5px solid #dcfce7;
+              border-radius:8px; background:#f0fdf4; font-size:13px; cursor:pointer;">
+            <p style="font-size:11px; color:#94a3b8; margin-top:4px;">
+              Upload a photo of the medicine, consumable or lab test sheet (JPG, PNG — max 5MB)
+            </p>
+          </div>
+
+          <div style="display:flex; gap:10px; margin-top:20px;">
+            <button onclick="submitTest()" class="btn-primary" style="width:auto; padding:10px 24px; margin-top:0;">Submit result</button>
+            <button onclick="hideAddForm()" class="btn-danger" style="padding:10px 24px;">Cancel</button>
+          </div>
+        </div>
+
+        <!-- Test results table -->
+        <div class="card" data-aos="fade-up">
+          <table>
+            <thead>
+              <tr>
+                <th>Type</th>
+                <th>Name</th>
+                <th>Batch/Category</th>
+                <th>Details</th>
+                <th>Date</th>
+                <th>Status</th>
+                <th>Photo</th>
+              </tr>
+            </thead>
+            <tbody id="testResultsTable">
+              <tr>
+                <td colspan="7" style="text-align:center; color:#94a3b8;">Loading...</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+      </div>
+    </div>
+
+  </div>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+  <script src="test-results.js"></script>
+  <script>
+    function toggleSidebar() {
+      document.getElementById('sidebar').classList.toggle('open');
+      document.getElementById('overlay').classList.toggle('open');
+    }
+  </script>
+</body>
+</html>

@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>MedQuality - Login</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <div class="split-container">
+
+    <!-- Left blue panel -->
+    <div class="split-left">
+      <svg class="brand-icon" viewBox="0 0 80 80" xmlns="http://www.w3.org/2000/svg">
+        <circle cx="40" cy="40" r="36" fill="rgba(255,255,255,0.1)" stroke="rgba(255,255,255,0.6)" stroke-width="2"/>
+        <path d="M18 40 L26 40 L30 28 L36 52 L40 36 L44 40 L62 40"
+          fill="none" stroke="#ffffff" stroke-width="3"
+          stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+      <h1 class="brand-name">MedQuality</h1>
+      <p class="brand-tagline">Online Testing and Monitoring<br>of Quality of Medicines</p>
+    </div>
+
+    <!-- Right white form panel -->
+    <div class="split-right">
+      <div class="form-box">
+        <h2 class="form-title">Welcome back</h2>
+        <p class="form-subtitle">Sign in to your account</p>
+
+        <form id="loginForm">
+          <label>Username</label>
+          <input type="text" id="username" placeholder="Enter your username" required>
+
+          <label>Password</label>
+          <input type="password" id="password" placeholder="Enter your password" required>
+
+          <button type="submit" class="btn-primary">Sign in</button>
+
+          <p class="form-link">
+            Don't have an account? <a href="signup.html">Create one</a>
+          </p>
+        </form>
+      </div>
+    </div>
+
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
