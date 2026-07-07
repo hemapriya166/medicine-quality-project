@@ -92,27 +92,51 @@ async function searchMedicine() {
               </p>
             </div>
           </div>
+          ${t.moistureContent ? `
+            <div style="display:grid; grid-template-columns:1fr 1fr; gap:10px; margin-top:10px;">
+              <div style="background:${isPass ? '#f0fdf4' : '#fff5f5'}; border-radius:8px; padding:10px; text-align:center;">
+                <p style="font-size:11px; color:#94a3b8; margin:0 0 4px; text-transform:uppercase;">Moisture</p>
+                <p style="font-size:14px; font-weight:600; color:${isPass ? '#166534' : '#991b1b'}; margin:0;">${t.moistureContent}%</p>
+              </div>
+              <div style="background:${isPass ? '#f0fdf4' : '#fff5f5'}; border-radius:8px; padding:10px; text-align:center;">
+                <p style="font-size:11px; color:#94a3b8; margin:0 0 4px; text-transform:uppercase;">Dissolution</p>
+                <p style="font-size:14px; font-weight:600; color:${isPass ? '#166534' : '#991b1b'}; margin:0;">${t.dissolutionRate}%</p>
+              </div>
+            </div>
+          ` : ''}
+          ${!isPass && t.failReasons && t.failReasons.length > 0 ? `
+            <div style="margin-top:12px; background:#fee2e2; border-radius:8px; padding:12px 14px; border:1px solid #fecaca;">
+              <p style="font-size:12px; font-weight:600; color:#991b1b; margin:0 0 6px;">❌ Fail reasons:</p>
+              ${t.failReasons.map(r => `
+                <p style="font-size:12px; color:#991b1b; margin:2px 0;">• ${r}</p>
+              `).join('')}
+            </div>
+          ` : ''}
+          ${!isPass && t.sideEffects && t.sideEffects.length > 0 ? `
+            <div style="margin-top:10px; background:#fff7ed; border-radius:8px; padding:12px 14px; border:1px solid #fed7aa;">
+              <p style="font-size:12px; font-weight:600; color:#c2410c; margin:0 0 6px;">⚠️ Potential side effects if used:</p>
+              ${t.sideEffects.map(s => `
+                <p style="font-size:12px; color:#c2410c; margin:2px 0;">• ${s}</p>
+              `).join('')}
+            </div>
+          ` : ''}
 
-          ${!isPass ? `
-            <div style="margin-top:12px; background:#fee2e2; border-radius:8px;
-              padding:10px 14px; border:1px solid #fecaca;">
-              <p style="font-size:12px; color:#991b1b; margin:0;">
-                ⚠️ This medicine failed the quality test.
-                Please do not use this batch.
-                Contact your pharmacist or healthcare provider.
+          ${isPass ? `
+            <div style="margin-top:12px; background:#dcfce7; border-radius:8px; padding:10px 14px; border:1px solid #bbf7d0;">
+              <p style="font-size:12px; color:#166534; margin:0;">
+                ✅ This medicine passed all quality tests and meets safety standards.
               </p>
             </div>
           ` : `
-            <div style="margin-top:12px; background:#dcfce7; border-radius:8px;
-              padding:10px 14px; border:1px solid #bbf7d0;">
-              <p style="font-size:12px; color:#166534; margin:0;">
-                ✅ This medicine passed the quality test and meets all safety standards.
+            <div style="margin-top:10px; background:#fee2e2; border-radius:8px; padding:10px 14px; border:1px solid #fecaca;">
+              <p style="font-size:12px; color:#991b1b; margin:0;">
+                🚨 Do not use this batch. Contact your pharmacist or healthcare provider immediately.
               </p>
             </div>
           `}
         </div>
       `;
-    }).join('');
+    }).join('');  
 
     document.getElementById('resultsArea').innerHTML = countText + cards;
 

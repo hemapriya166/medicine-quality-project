@@ -12,7 +12,7 @@ const userSchema = new mongoose.Schema({
   },
   role: {
     type: String,
-    enum: ['Admin', 'Lab Technician'],
+    enum: ['Admin', 'Lab Technician', 'Pharmacist', 'Quality Manager', 'Supervisor', 'Auditor'],
     default: 'Lab Technician'
   }
 }, { timestamps: true });

@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>MedQuality - About</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css">
+</head>
+<body class="light-page">
+
+  <!-- Hamburger button -->
+  <button class="hamburger" onclick="toggleSidebar()" aria-label="Toggle menu">
+    <span></span>
+    <span></span>
+    <span></span>
+  </button>
+
+  <!-- Overlay -->
+  <div class="sidebar-overlay" id="overlay" onclick="toggleSidebar()"></div>
+
+  <div class="app-container">
+
+    <!-- Sidebar -->
+    <aside class="sidebar" id="sidebar">
+      <a href="dashboard.html" class="sidebar-logo">
+        <svg width="28" height="28" viewBox="0 0 80 80">
+          <circle cx="40" cy="40" r="36" fill="rgba(255,255,255,0.15)" stroke="rgba(255,255,255,0.8)" stroke-width="2"/>
+          <path d="M18 40 L26 40 L30 28 L36 52 L40 36 L44 40 L62 40"
+            fill="none" stroke="#ffffff" stroke-width="3"
+            stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+        <span>MedQuality</span>
+      </a>
+
+      <nav class="sidebar-nav">
+        <a href="dashboard.html">
+          <span class="nav-icon">📊</span> Dashboard
+        </a>
+        <a href="medicines.html">
+          <span class="nav-icon">💊</span> Medicines
+        </a>
+        <a href="consumables.html">
+          <span class="nav-icon">🧪</span> Consumables
+        </a>
+        <a href="test-results.html">
+          <span class="nav-icon">📋</span> Test Results
+        </a>
+        <a href="alerts.html">
+          <span class="nav-icon">🔔</span> Alerts
+        </a>
+        <a href="report.html">
+          <span class="nav-icon">📄</span> Report
+        </a>
+        <a href="about.html" class="active">
+          <span class="nav-icon">ℹ️</span> About
+        </a>
+      </nav>
+
+      <div class="sidebar-bottom">
+        <div class="sidebar-user">
+          <p>Logged in as</p>
+          <span id="welcomeUser"></span>
+        </div>
+        <button onclick="logout()">🚪 Logout</button>
+      </div>
+    </aside>
+
+    <!-- Main content -->
+    <div class="main-content">
+      <div class="page-container">
+
+        <p class="page-title">About MedQuality</p>
+
+        <!-- Project overview -->
+        <div class="card" style="margin-bottom:20px;" data-aos="fade-up">
+          <div style="display:flex; align-items:center; gap:16px; margin-bottom:16px;">
+            <svg width="48" height="48" viewBox="0 0 80 80">
+              <circle cx="40" cy="40" r="36" fill="#e0f2fe" stroke="#0c447c" stroke-width="2"/>
+              <path d="M18 40 L26 40 L30 28 L36 52 L40 36 L44 40 L62 40"
+                fill="none" stroke="#0c447c" stroke-width="3"
+                stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+            <div>
+              <p style="font-size:18px; font-weight:700; color:#0c447c; margin:0 0 4px;">MedQuality</p>
+              <p style="font-size:13px; color:#64748b; margin:0;">Online Testing and Monitoring of Quality of Medicines and Consumables</p>
+            </div>
+          </div>
+          <p style="font-size:14px; color:#1e293b; line-height:1.8; margin:0;">
+            MedQuality is a comprehensive web-based quality monitoring system designed to digitize and automate the process of testing and monitoring the quality of medicines and consumables in healthcare settings. The system replaces traditional paper-based quality tracking with a real-time, cloud-connected platform accessible from anywhere.
+          </p>
+        </div>
+
+        <!-- Purpose -->
+        <div class="card" style="margin-bottom:20px;" data-aos="fade-up">
+          <p style="font-size:15px; font-weight:600; color:#0c447c; margin:0 0 14px;">🎯 Purpose</p>
+          <div style="display:grid; grid-template-columns:1fr 1fr; gap:12px;">
+            <div style="background:#f0fdf4; border-radius:8px; padding:14px; border:1px solid #dcfce7;">
+              <p style="font-size:13px; font-weight:600; color:#15803d; margin:0 0 6px;">Problem</p>
+              <p style="font-size:12px; color:#64748b; margin:0; line-height:1.7;">Manual paper-based quality tracking is slow, error-prone, and lacks real-time monitoring capabilities. There is no way for the general public to verify medicine quality.</p>
+            </div>
+            <div style="background:#e0f2fe; border-radius:8px; padding:14px; border:1px solid #bae6fd;">
+              <p style="font-size:13px; font-weight:600; color:#0c447c; margin:0 0 6px;">Solution</p>
+              <p style="font-size:12px; color:#64748b; margin:0; line-height:1.7;">MedQuality provides a digital platform for real-time quality testing, automatic pass/fail determination, instant alert generation, and a public medicine quality checker.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Quality parameters -->
+        <div class="card" style="margin-bottom:20px;" data-aos="fade-up">
+          <p style="font-size:15px; font-weight:600; color:#0c447c; margin:0 0 14px;">⚗️ Quality Parameters</p>
+
+          <p style="font-size:13px; font-weight:600; color:#15803d; margin:0 0 10px;">Medicine quality parameters</p>
+          <table style="margin-bottom:16px;">
+            <thead>
+              <tr>
+                <th>Parameter</th>
+                <th>Pass criteria</th>
+                <th>Why it matters</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Purity %</td>
+                <td><span class="badge-pass">≥ 95%</span></td>
+                <td>Ensures medicine is effective and safe</td>
+              </tr>
+              <tr>
+                <td>pH level</td>
+                <td><span class="badge-pass">5.5 to 7.5</span></td>
+                <td>Affects absorption and stability</td>
+              </tr>
+              <tr>
+                <td>Moisture content %</td>
+                <td><span class="badge-pass">≤ 2%</span></td>
+                <td>Prevents degradation and microbial growth</td>
+              </tr>
+              <tr>
+                <td>Dissolution rate %</td>
+                <td><span class="badge-pass">≥ 85%</span></td>
+                <td>Ensures medicine dissolves properly in body</td>
+              </tr>
+              <tr>
+                <td>Appearance</td>
+                <td><span class="badge-pass">Good</span></td>
+                <td>Visual inspection for physical defects</td>
+              </tr>
+            </tbody>
+          </table>
+
+          <p style="font-size:13px; font-weight:600; color:#15803d; margin:0 0 10px;">Consumable quality parameters</p>
+          <table>
+            <thead>
+              <tr>
+                <th>Parameter</th>
+                <th>Pass criteria</th>
+                <th>Why it matters</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Condition</td>
+                <td><span class="badge-pass">Good</span></td>
+                <td>Ensures consumable is usable</td>
+              </tr>
+              <tr>
+                <td>Sterility check</td>
+                <td><span class="badge-pass">Pass</span></td>
+                <td>Prevents infection and contamination</td>
+              </tr>
+              <tr>
+                <td>Physical integrity</td>
+                <td><span class="badge-pass">Intact</span></td>
+                <td>Ensures no damage or compromise</td>
+              </tr>
+              <tr>
+                <td>Expiry date</td>
+                <td><span class="badge-pass">Future date</span></td>
+                <td>Expired consumables are unsafe to use</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <!-- User roles -->
+        <div class="card" style="margin-bottom:20px;" data-aos="fade-up">
+          <p style="font-size:15px; font-weight:600; color:#0c447c; margin:0 0 14px;">👥 User Roles</p>
+          <div style="display:grid; grid-template-columns:repeat(3,1fr); gap:12px;">
+            <div style="background:#f0fdf4; border-radius:8px; padding:14px; border:1px solid #dcfce7; text-align:center;">
+              <p style="font-size:24px; margin:0 0 8px;">👨‍🔬</p>
+              <p style="font-size:13px; font-weight:600; color:#15803d; margin:0 0 6px;">Lab Technician</p>
+              <p style="font-size:11px; color:#64748b; margin:0; line-height:1.6;">Submits test results, adds medicines and consumables, uploads photo evidence</p>
+            </div>
+            <div style="background:#e0f2fe; border-radius:8px; padding:14px; border:1px solid #bae6fd; text-align:center;">
+              <p style="font-size:24px; margin:0 0 8px;">👨‍💼</p>
+              <p style="font-size:13px; font-weight:600; color:#0c447c; margin:0 0 6px;">Admin</p>
+              <p style="font-size:11px; color:#64748b; margin:0; line-height:1.6;">Monitors dashboard, resolves alerts, generates reports, manages system</p>
+            </div>
+            <div style="background:#fef9c3; border-radius:8px; padding:14px; border:1px solid #fef08a; text-align:center;">
+              <p style="font-size:24px; margin:0 0 8px;">👤</p>
+              <p style="font-size:13px; font-weight:600; color:#854d0e; margin:0 0 6px;">General Public</p>
+              <p style="font-size:11px; color:#64748b; margin:0; line-height:1.6;">Checks medicine quality without login using public medicine checker</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Tech stack -->
+        <div class="card" style="margin-bottom:20px;" data-aos="fade-up">
+          <p style="font-size:15px; font-weight:600; color:#0c447c; margin:0 0 14px;">🛠️ Tech Stack</p>
+          <div style="display:grid; grid-template-columns:repeat(3,1fr); gap:12px;">
+            <div style="background:#f8fafc; border-radius:8px; padding:12px; border:1px solid #e2e8f0;">
+              <p style="font-size:11px; color:#94a3b8; margin:0 0 4px; text-transform:uppercase; letter-spacing:0.5px;">Frontend</p>
+              <p style="font-size:13px; font-weight:600; color:#1e293b; margin:0;">HTML5 + CSS3 + JavaScript</p>
+            </div>
+            <div style="background:#f8fafc; border-radius:8px; padding:12px; border:1px solid #e2e8f0;">
+              <p style="font-size:11px; color:#94a3b8; margin:0 0 4px; text-transform:uppercase; letter-spacing:0.5px;">Backend</p>
+              <p style="font-size:13px; font-weight:600; color:#1e293b; margin:0;">Node.js + Express.js</p>
+            </div>
+            <div style="background:#f8fafc; border-radius:8px; padding:12px; border:1px solid #e2e8f0;">
+              <p style="font-size:11px; color:#94a3b8; margin:0 0 4px; text-transform:uppercase; letter-spacing:0.5px;">Database</p>
+              <p style="font-size:13px; font-weight:600; color:#1e293b; margin:0;">MongoDB Atlas</p>
+            </div>
+            <div style="background:#f8fafc; border-radius:8px; padding:12px; border:1px solid #e2e8f0;">
+              <p style="font-size:11px; color:#94a3b8; margin:0 0 4px; text-transform:uppercase; letter-spacing:0.5px;">Authentication</p>
+              <p style="font-size:13px; font-weight:600; color:#1e293b; margin:0;">bcryptjs</p>
+            </div>
+            <div style="background:#f8fafc; border-radius:8px; padding:12px; border:1px solid #e2e8f0;">
+              <p style="font-size:11px; color:#94a3b8; margin:0 0 4px; text-transform:uppercase; letter-spacing:0.5px;">File storage</p>
+              <p style="font-size:13px; font-weight:600; color:#1e293b; margin:0;">Cloudinary</p>
+            </div>
+            <div style="background:#f8fafc; border-radius:8px; padding:12px; border:1px solid #e2e8f0;">
+              <p style="font-size:11px; color:#94a3b8; margin:0 0 4px; text-transform:uppercase; letter-spacing:0.5px;">Charts</p>
+              <p style="font-size:13px; font-weight:600; color:#1e293b; margin:0;">Chart.js + AOS.js</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Developer info -->
+        <div class="card" data-aos="fade-up">
+          <p style="font-size:15px; font-weight:600; color:#0c447c; margin:0 0 14px;">👩‍💻 Developer Info</p>
+          <div style="display:flex; align-items:center; gap:16px;">
+            <div style="width:56px; height:56px; border-radius:50%; background:linear-gradient(135deg, #0c447c, #2478c8); display:flex; align-items:center; justify-content:center;">
+              <span style="font-size:22px; font-weight:700; color:#fff;">H</span>
+            </div>
+            <div>
+              <p style="font-size:15px; font-weight:600; color:#1e293b; margin:0 0 4px;">Hemapriya</p>
+              <p style="font-size:13px; color:#64748b; margin:0 0 4px;">College mini project — 2026</p>
+              <a href="https://github.com/hemapriya166/medicine-quality-project"
+                target="_blank"
+                style="font-size:12px; color:#0c447c; text-decoration:none; font-weight:600;">
+                🔗 View on GitHub
+              </a>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+  </div>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+  <script>
+    const user = JSON.parse(localStorage.getItem('loggedInUser'));
+    if (!user) window.location.href = 'index.html';
+    document.getElementById('welcomeUser').textContent = user.username;
+
+    function logout() {
+      localStorage.removeItem('loggedInUser');
+      window.location.href = 'index.html';
+    }
+
+    function toggleSidebar() {
+      document.getElementById('sidebar').classList.toggle('open');
+      document.getElementById('overlay').classList.toggle('open');
+    }
+
+    AOS.init({ duration: 600, once: true });
+  </script>
+</body>
+</html>

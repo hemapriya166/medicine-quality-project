@@ -51,6 +51,9 @@
         <a href="report.html">
           <span class="nav-icon">📄</span> Report
         </a>
+        <a href="about.html">
+          <span class="nav-icon">ℹ️</span> About
+        </a>
       </nav>
 
       <div class="sidebar-bottom">
@@ -92,6 +95,7 @@
           </div>
 
           <!-- Medicine fields -->
+      
           <div id="medicineFields">
             <div style="display:grid; grid-template-columns:1fr 1fr; gap:16px;">
               <div>
@@ -101,23 +105,37 @@
               <div>
                 <label>Batch number</label>
                 <input type="text" id="batchNumber" placeholder="e.g. B001">
-              </div>
-              <div>
-                <label>Purity (%)</label>
-                <input type="number" id="purity" placeholder="e.g. 98" min="0" max="100">
-              </div>
-              <div>
-                <label>pH level</label>
-                <input type="number" id="pH" placeholder="e.g. 6.8" step="0.1" min="0" max="14">
-              </div>
-            </div>
-            <div style="background:#f0fdf4; border:1px solid #dcfce7; border-radius:8px; padding:12px 16px; margin-top:16px;">
-              <p style="font-size:12px; color:#166534; margin:0;">
-                ✅ <strong>Pass criteria:</strong> Purity ≥ 95% AND pH between 5.5 and 7.5
-              </p>
-            </div>
           </div>
-
+          <div>
+            <label>Purity (%)</label>
+            <input type="number" id="purity" placeholder="e.g. 98" min="0" max="100">
+          </div>
+          <div>
+            <label>pH level</label>
+            <input type="number" id="pH" placeholder="e.g. 6.8" step="0.1" min="0" max="14">
+          </div>
+          <div>
+            <label>Moisture content (%)</label>
+            <input type="number" id="moistureContent" placeholder="e.g. 1.5" step="0.1" min="0" max="100">
+          </div>
+          <div>
+            <label>Dissolution rate (%)</label>
+            <input type="number" id="dissolutionRate" placeholder="e.g. 90" min="0" max="100">
+          </div>
+          <div>
+            <label>Appearance</label>
+            <select id="appearance">
+              <option value="Good">Good</option>
+              <option value="Poor">Poor</option>
+            </select>
+          </div>
+        </div>
+        <div style="background:#f0fdf4; border:1px solid #dcfce7; border-radius:8px; padding:12px 16px; margin-top:16px;">
+          <p style="font-size:12px; color:#166534; margin:0;">
+            ✅ <strong>Pass criteria:</strong> Purity ≥ 95% | pH 5.5-7.5 | Moisture ≤ 2% | Dissolution ≥ 85% | Appearance Good
+          </p>
+        </div>
+      </div>
           <!-- Consumable fields -->
           <div id="consumableFields" style="display:none;">
             <div style="display:grid; grid-template-columns:1fr 1fr; gap:16px;">
@@ -125,35 +143,49 @@
                 <label>Consumable name</label>
                 <input type="text" id="consumableName" placeholder="e.g. Surgical Gloves">
               </div>
-              <div>
-                <label>Category</label>
-                <select id="conCategory">
-                  <option value="PPE">PPE</option>
-                  <option value="Lab Equipment">Lab Equipment</option>
-                  <option value="Reagents">Reagents</option>
-                  <option value="Surgical">Surgical</option>
-                  <option value="Other">Other</option>
-                </select>
-              </div>
-              <div>
-                <label>Condition</label>
-                <select id="condition">
-                  <option value="Good">Good</option>
-                  <option value="Damaged">Damaged</option>
-                  <option value="Expired">Expired</option>
-                </select>
-              </div>
-              <div>
-                <label>Expiry date</label>
-                <input type="date" id="conExpiry">
-              </div>
+            <div>
+              <label>Category</label>
+              <select id="conCategory">
+                <option value="PPE">PPE</option>
+                <option value="Lab Equipment">Lab Equipment</option>
+                <option value="Reagents">Reagents</option>
+                <option value="Surgical">Surgical</option>
+                <option value="Other">Other</option>
+              </select>
             </div>
-            <div style="background:#f0fdf4; border:1px solid #dcfce7; border-radius:8px; padding:12px 16px; margin-top:16px;">
-              <p style="font-size:12px; color:#166534; margin:0;">
-                ✅ <strong>Pass criteria:</strong> Condition is Good AND expiry date is in the future
-              </p>
+            <div>
+              <label>Condition</label>
+              <select id="condition">
+                <option value="Good">Good</option>
+                <option value="Damaged">Damaged</option>
+                <option value="Expired">Expired</option>
+              </select>
             </div>
-          </div>
+           <div>
+             <label>Sterility check</label>
+             <select id="sterilityCheck">
+               <option value="Pass">Pass</option>
+               <option value="Fail">Fail</option>
+             </select>
+           </div>
+           <div>
+             <label>Physical integrity</label>
+             <select id="physicalIntegrity">
+               <option value="Intact">Intact</option>
+               <option value="Damaged">Damaged</option>
+             </select>
+           </div>
+           <div>
+             <label>Expiry date</label>
+             <input type="date" id="conExpiry">
+           </div>
+         </div>
+         <div style="background:#f0fdf4; border:1px solid #dcfce7; border-radius:8px; padding:12px 16px; margin-top:16px;">
+           <p style="font-size:12px; color:#166534; margin:0;">
+             ✅ <strong>Pass criteria:</strong> Condition Good | Sterility Pass | Physical Integrity Intact | Expiry date in future
+           </p>
+         </div>
+       </div>      
 
           <!-- Photo upload -->
           <div style="margin-top:16px;">

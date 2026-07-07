@@ -67,12 +67,18 @@ async function submitTest() {
       formData.append('batchNumber', batchNumber);
       formData.append('purity', purity);
       formData.append('pH', pH);
+      formData.append('moistureContent', document.getElementById('moistureContent').value);
+      formData.append('dissolutionRate', document.getElementById('dissolutionRate').value);
+      formData.append('appearance', document.getElementById('appearance').value);
+
 
     } else {
       const consumableName = document.getElementById('consumableName').value;
       const category = document.getElementById('conCategory').value;
       const condition = document.getElementById('condition').value;
       const expiryDate = document.getElementById('conExpiry').value;
+      const sterilityCheck = document.getElementById('sterilityCheck').value;
+      const physicalIntegrity = document.getElementById('physicalIntegrity').value;
 
       if (!consumableName || !expiryDate) {
         alert('Please fill all fields!');
@@ -83,6 +89,8 @@ async function submitTest() {
       formData.append('category', category);
       formData.append('condition', condition);
       formData.append('expiryDate', expiryDate);
+      formData.append('sterilityCheck', sterilityCheck);
+      formData.append('physicalIntegrity', physicalIntegrity);
     }
 
     // Add photo if selected
