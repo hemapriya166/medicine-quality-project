@@ -139,3 +139,11 @@ async function deleteMedicine(id) {
 AOS.init({ duration: 600, once: true });
 
 loadMedicines();
+function searchMedicines() {
+  const query = document.getElementById('searchInput').value.toLowerCase();
+  const rows = document.querySelectorAll('#medicinesTable tr');
+  rows.forEach(row => {
+    const text = row.textContent.toLowerCase();
+    row.style.display = text.includes(query) ? '' : 'none';
+  });
+}

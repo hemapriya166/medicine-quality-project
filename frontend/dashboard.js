@@ -3,7 +3,17 @@ const BASE = 'http://localhost:5000/api';
 const user = JSON.parse(localStorage.getItem('loggedInUser'));
 if (!user) window.location.href = 'index.html';
 
-document.getElementById('welcomeUser').textContent = user.username;
+document.getElementById('welcomeUser').textContent = `${user.username} (${user.role})`;
+const roleMessages = {
+  'Admin': '🔑 You have full system access — manage medicines, resolve alerts and generate reports.',
+  'Lab Technician': '🔬 Submit quality test results and monitor medicine quality.',
+  'Pharmacist': '💊 Monitor medicine quality and check expiry status.',
+  'Quality Manager': '📋 Review quality test results and manage alerts.',
+  'Supervisor': '👀 Oversee quality monitoring and review reports.',
+  'Auditor': '📄 View quality reports and audit test results.'
+};
+
+document.getElementById('roleMessage').textContent = roleMessages[user.role] || 'Welcome to MedQuality';
 
 function logout() {
   localStorage.removeItem('loggedInUser');

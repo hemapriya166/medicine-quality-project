@@ -109,3 +109,11 @@ async function deleteConsumable(id) {
 AOS.init({ duration: 600, once: true });
 
 loadConsumables();
+function searchConsumables() {
+  const query = document.getElementById('searchInput').value.toLowerCase();
+  const rows = document.querySelectorAll('#consumablesTable tr');
+  rows.forEach(row => {
+    const text = row.textContent.toLowerCase();
+    row.style.display = text.includes(query) ? '' : 'none';
+  });
+}

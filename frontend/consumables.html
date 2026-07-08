@@ -150,6 +150,15 @@
             <p class="stat-value" id="outOfStockCount" style="color:#991b1b;">0</p>
           </div>
         </div>
+        <!-- Search box -->
+        <div style="margin-bottom:16px;">
+          <input type="text" id="searchInput"
+            placeholder="🔍 Search by name, category or supplier..."
+            onkeyup="searchConsumables()"
+            style="width:100%; padding:11px 16px; border:1.5px solid #0c447c;
+            border-radius:8px; font-size:14px; outline:none; background:#ffffff;
+            color:#1e293b; box-shadow: 0 2px 8px rgba(0,0,0,0.08);">
+        </div> 
 
         <!-- Consumables table -->
         <div class="card" data-aos="fade-up">
