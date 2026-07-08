@@ -165,12 +165,23 @@ async function loadTestResults() {
 
       return `
         <tr>
-          <td>${isMedicine ? '💊 Medicine' : '🧪 Consumable'}</td>
+          <td>
+            ${isMedicine
+              ? `<span style="background:#e0f2fe; color:#0c447c; padding:3px 10px; border-radius:20px; font-size:11px; font-weight:600;">Medicine</span>`
+              : `<span style="background:#dcfce7; color:#166534; padding:3px 10px; border-radius:20px; font-size:11px; font-weight:600;">Consumable</span>`
+            }
+          </td>
           <td>${name || '-'}</td>
           <td>${batchOrCategory || '-'}</td>
           <td>${details}</td>
           <td>${new Date(t.testDate).toLocaleDateString()}</td>
-          <td><span class="badge-${t.status === 'Pass' ? 'pass' : 'fail'}">${t.status}</span></td>
+          <td>
+            <span style="background:${t.status === 'Pass' ? '#dcfce7' : '#fee2e2'}; 
+              color:${t.status === 'Pass' ? '#166534' : '#991b1b'}; 
+              padding:3px 10px; border-radius:20px; font-size:11px; font-weight:600;">
+              ${t.status}
+            </span>
+          </td>
           <td>${photoCell}</td>
         </tr>
       `;
