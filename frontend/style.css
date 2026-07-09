@@ -656,3 +656,122 @@ body.dark-mode .page-container p {
 .dark-mode-btn:hover {
   background: rgba(255,255,255,0.15);
 }
+/* About page dark mode */
+body.dark-mode .card p,
+body.dark-mode .card h3,
+body.dark-mode .card span:not(.badge-pass):not(.badge-fail):not(.badge-warning) {
+  color: #e2e8f0 !important;
+}
+
+body.dark-mode .card {
+  background: #1e293b !important;
+  border-color: #334155 !important;
+}
+
+/* Purpose cards dark mode */
+body.dark-mode [style*="background:#f0fdf4"],
+body.dark-mode [style*="background: #f0fdf4"] {
+  background: #1a3a2a !important;
+  border-color: #2d5a3d !important;
+}
+
+body.dark-mode [style*="background:#e0f2fe"],
+body.dark-mode [style*="background: #e0f2fe"] {
+  background: #1a2d3a !important;
+  border-color: #2d4a5a !important;
+}
+
+body.dark-mode [style*="background:#fef9c3"],
+body.dark-mode [style*="background: #fef9c3"] {
+  background: #3a3010 !important;
+  border-color: #5a4a10 !important;
+}
+
+body.dark-mode [style*="background:#f8fafc"],
+body.dark-mode [style*="background: #f8fafc"] {
+  background: #1e293b !important;
+}
+
+/* Tech stack cards dark mode */
+body.dark-mode [style*="background:#f8fafc"] p {
+  color: #e2e8f0 !important;
+}
+
+/* Alerts dark mode */
+body.dark-mode [style*="background:#fee2e2"],
+body.dark-mode [style*="background: #fee2e2"] {
+  background: #3a1a1a !important;
+  border-color: #5a2a2a !important;
+}
+
+body.dark-mode [style*="background:#fef9c3"],
+body.dark-mode [style*="background: #fef9c3"] {
+  background: #3a3010 !important;
+  border-color: #5a4a10 !important;
+}
+
+body.dark-mode [style*="background:#dcfce7"],
+body.dark-mode [style*="background: #dcfce7"] {
+  background: #1a3a2a !important;
+  border-color: #2d5a3d !important;
+}
+
+/* Alert text colors dark mode */
+body.dark-mode [style*="color:#991b1b"] {
+  color: #ff8080 !important;
+}
+
+body.dark-mode [style*="color:#854d0e"] {
+  color: #fbbf24 !important;
+}
+
+body.dark-mode [style*="color:#166534"] {
+  color: #4ade80 !important;
+}
+
+/* General text in dark mode */
+body.dark-mode p,
+body.dark-mode h1,
+body.dark-mode h2,
+body.dark-mode h3,
+body.dark-mode h4,
+body.dark-mode span,
+body.dark-mode td,
+body.dark-mode th {
+  color: #e2e8f0 !important;
+}
+
+/* Override for badges */
+body.dark-mode .badge-pass {
+  background: #1a3a2a !important;
+  color: #4ade80 !important;
+  border-color: #2d5a3d !important;
+}
+
+body.dark-mode .badge-fail {
+  background: #3a1a1a !important;
+  color: #ff8080 !important;
+  border-color: #5a2a2a !important;
+}
+
+body.dark-mode .badge-warning {
+  background: #3a3010 !important;
+  color: #fbbf24 !important;
+  border-color: #5a4a10 !important;
+}
+
+/* Search input dark mode */
+body.dark-mode #searchInput {
+  background: #1e293b !important;
+  border-color: #334155 !important;
+  color: #e2e8f0 !important;
+}
+
+body.dark-mode #searchInput::placeholder {
+  color: #475569 !important;
+}
+
+/* Role message dark mode */
+body.dark-mode #roleMessage {
+  color: #94a3b8 !important;
+}
